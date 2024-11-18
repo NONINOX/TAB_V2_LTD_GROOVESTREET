@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Commande</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fae7ce;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 100px; 
+            height: auto;
+            margin-right: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0;
+        }
+
+        #orderForm {
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"], input[type="number"], select, input[type="time"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"], button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="ltdgrv.png" alt="Logo LTD Grove Street">
+            <h1>LTD GROVE STREET | COMMANDE</h1>
+        </div>
+        <form id="orderForm">
+            <label for="nom_entreprise">Nom de l'entreprise :</label>
+            <input type="text" id="nom_entreprise" name="nom_entreprise" readonly>
+
+            <div id="articles">
+                <div class="article">
+                    <label for="type_article_0">Article :</label>
+                    <select id="type_article_0" name="type_article[]" required>
+                        <option value="">--Sélectionnez--</option>
+                        <option value="Bagel">Bagel</option>
+                        <option value="Bar de chocolat">Bar de chocolat</option>
+                        <option value="caramel">Caramel</option>
+                        <option value="Colle">Colle</option>
+                        <option value="Coquille à tacos">Coquille à tacos</option>
+                        <option value="Crème fraîche">Crème fraîche</option>
+                        <option value="Crème Glacée (cornet)">Crème Glacée (cornet)</option>
+                        <option value="Crème Glacée (pot)">Crème Glacée (pot)</option>
+                        <option value="Eau purifiée">Eau purifiée</option>
+                        <option value="Encre">Encre</option>
+                        <option value="Eponge">Eponge</option>
+                        <option value="Moutarde">Moutarde</option>
+                        <option value="Nouille">Nouille</option>
+                        <option value="Pain à burger">Pain à burger</option>
+                        <option value="Pain grillé">Pain grillé</option>
+                        <option value="Papier à rouler">Papier à rouler</option>
+                        <option value="Pâtes">Pâtes</option>
+                        <option value="Hérisson">Hérisson</option>
+                        <option value="Solvant">Solvant</option>
+                        <option value="Tortilla">Tortilla</option>
+                        <option value="Caouchouc">Caouchouc</option>
+                        <option value="Appat Grande qualité">Appat Grande qualité</option>
+                        <option value="Balle de Basket">Balle de basket</option>
+                        <option value="Balle de football">Balle de football</option>
+                        <option value="Batterie">Batterie</option>
+                        <option value="Batterie de Voiture">Batterie de Voiture</option>
+                        <option value="Bobine de cuivre">Bobine de cuivre</option>
+                        <option value="boutille d'eau">boutille d'eau</option>
+                        <option value="Canne à pêche">Canne à pêche</option>
+                        <option value="coupeurs">coupeurs</option>
+                        <option value="croquettes">croquettes</option>
+                        <option value="Fertilisant">Fertilisant</option>
+                        <option value="Foret de perceuses">Foret de perceuses</option>
+                        <option value="Grosse perceuses">Grosse perceuses</option>
+                        <option value="Huile">Huile</option>
+                        <option value="Huile de shell">Huile de shell</option>
+                        <option value="Huile noir">Huile noir</option>
+                        <option value="Lumière violette">Lumière violette</option>
+                        <option value="Outil">Outil</option>
+                        <option value="Perceuse">Perceuse</option>
+                        <option value="Pile Verte">Pile verte</option>
+                        <option value="Pince pour plaque">Pince pour plaque</option>
+                        <option value="Porte document">Porte document</option>
+                        <option value="Porte feuilles">Porte feuilles</option>
+                        <option value="Pot de fleur">Pot de fleur</option>
+                        <option value="Skateboard">Skateboard</option>
+                        <option value="Spray pour tag">Spray pour tag</option>
+                        <option value="Table de travail">Table de travail</option>
+                        <option value="Ticket à grater">Ticket à grater</option>
+                        <option value="trousseau de clé">trousseau de clé</option>
+                        <option value="Ver de terre">Ver de terre</option>
+                        <option value="Ver de terre pour poisson">Ver de terre pour poisson</option>
+                    </select>
+                    
+                    <label for="quantite_0">Quantité :</label>
+                    <input type="number" id="quantite_0" name="quantite[]" required min="1">
+                </div>
+            </div>
+    
+            <button type="button" onclick="addArticle()">Ajouter un autre article</button>
+
+            <label for="date_commande">Date de livraison :</label>
+            <input type="date" id="date_commande" name="date_commande" required>
+
+            <label for="heure_commande">Heure de livraison :</label>
+            <input type="time" id="heure_commande" name="heure_commande" required>
+            <input type="time" id="heure_commande1" name="heure_commande1" required>
+            <input type="submit" value="Commander">
+        </form>
+
+        <script>
+            // Webhook URLs par entreprise
+            const webhooks = {
+                "Custom Motor": "https://discord.com/api/webhooks/1307457052389543986/hbPGt8dSms5HqIae_dT5lF9OwIS3MF14PkGX9fRXBuM-78kfi8V99KLgOPu3yBwxn4Th",
+                "DockTease": "https://discord.com/api/webhooks/1307456891705753703/_7EUazLAa8AWGNEbNm3ZySPtHofl_3MWjBIJFM5plxF3ZN22q5uNjzt25y7VXP3oTYVr",
+                "Pearl's": "https://discord.com/api/webhooks/1308138178598797424/8yPxWwRiod9oZmBiUUXSuemZK4DgXL1OQTPX-Moybzfqjsp5dfVopoevdDEVnBYqlQ_7",
+                "LsCustom": "https://discord.com/api/webhooks/1308137984197132341/F1rvBclcps7_HTtEwDoRbU0Ipl5S_m611d3BI-VIU7xRSVClV9QFwq0X7dl6-ckU5mBN",
+                "Bennys": "https://discord.com/api/webhooks/1307402370879324284/_8sXJldGEZPg0EBcvDFxwrYIKqEfxBOVI46oY0rYzhqH-dUYjfx4LSDQuqDuXQ6fPKEE",
+                "Esthétique GS": "https://discord.com/api/webhooks/1308139055036502196/7YMjOXBZFwtXJu2R_0fPc1xjOjgwb6ZFwKzIHjdtSlkqiiL7iL67qxVnMhytn_PTqtFc",
+                "Noodle": "https://discord.com/api/webhooks/1308142553488556032/ikdaqhBQqH72u6EKekcHoBptoZSrqJw--K2uoq5rkMnJ-_V-8w7-y7zv_tGZjGMxgvsa",
+                "FlyWheels": "https://discord.com/api/webhooks/1308139391780388925/ahrVlMxnqz3754CAUxOyW5x5sQCy7B78yvyPVXv4j1G-DG_nL4n3SPiRRRrqsimK_Qgy",
+                "Burger Shot": "https://discord.com/api/webhooks/1308142656785874974/iTGbDxoDxRba5tuFqxxPv0xPinmGKMpW2G4_cvZR7Xg9Cu-UvuKQipLYRypTMQNgmdJi",
+                "Rex Diner": "https://discord.com/api/webhooks/1308146830638317628/80NZ6KlyR0_ZKdT5v-WDfWSv3Ehxy7hTwE9UoBgmFVzK74W1QVYbnBzjxx0KznBeiRMG",
+                "UwU Café": "https://discord.com/api/webhooks/1308146972854845460/P12iDAU3eVsO7yIJK4YBE_4RQXUHJoEJIM0dP6UH2Taj7Tfiv04uYIih6Z2Fqz7AP1jy",
+                "LD Organics": "https://discord.com/api/webhooks/1308147110662901809/qoRCrezPFtwsQtUKMHO6xqeUUxHj2skx9a0jI_XixBadOpB-E-ba7zWX81m42OYLGBzb",
+                "Tatoo Vinewood": "https://discord.com/api/webhooks/1308139150372765747/T7_WS5qCZMUyKFvz_JaYUBEnnBdz-285z9IQuCkA33MHwAJaCqTx9CZNKQHBkcuAUTJw",
+                "Hen House": "https://discord.com/api/webhooks/1308139268044230728/Nz5CSg1-34WNEoi540iFFqJfJOsvaXUqGCO2jhki7Cz3Jg_dmOdirBFM7mLUF1N8HKg4"
+            };
+
+            // Récupérer l'entreprise depuis l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const entreprise = urlParams.get('entreprise');
+            // Vérifier que l'entreprise est bien récupérée
+            console.log("Entreprise récupérée :", entreprise);
+            document.getElementById('nom_entreprise').value = entreprise;
+
+            let articleCount = 1;
+    
+            function addArticle() {
+                const articlesDiv = document.getElementById('articles');
+                const newArticle = document.createElement('div');
+                newArticle.classList.add('article');
+                newArticle.innerHTML = `
+                    <label for="type_article_${articleCount}">Type d'article :</label>
+                    <select id="type_article_${articleCount}" name="type_article[]" required>
+                        <option value="">--Sélectionnez--</option>
+                        <option value="Bagel">Bagel</option>
+                        <option value="Bar de chocolat">Bar de chocolat</option>
+                        <option value="caramel">Caramel</option>
+                        <option value="Colle">Colle</option>
+                        <option value="Coquille à tacos">Coquille à tacos</option>
+                        <option value="Crème fraîche">Crème fraîche</option>
+                        <option value="Crème Glacée (cornet)">Crème Glacée (cornet)</option>
+                        <option value="Crème Glacée (pot)">Crème Glacée (pot)</option>
+                        <option value="Eau purifiée">Eau purifiée</option>
+                        <option value="Encre">Encre</option>
+                        <option value="Eponge">Eponge</option>
+                        <option value="Moutarde">Moutarde</option>
+                        <option value="Nouille">Nouille</option>
+                        <option value="Pain à burger">Pain à burger</option>
+                        <option value="Pain grillé">Pain grillé</option>
+                        <option value="Papier à rouler">Papier à rouler</option>
+                        <option value="Pâtes">Pâtes</option>
+                        <option value="Hérisson">Hérisson</option>
+                        <option value="Solvant">Solvant</option>
+                        <option value="Tortilla">Tortilla</option>
+                        <option value="Caouchouc">Caouchouc</option>
+                        <option value="Appat Grande qualité">Appat Grande qualité</option>
+                        <option value="Balle de Basket">Balle de basket</option>
+                        <option value="Balle de football">Balle de football</option>
+                        <option value="Batterie">Batterie</option>
+                        <option value="Batterie de Voiture">Batterie de Voiture</option>
+                        <option value="Bobine de cuivre">Bobine de cuivre</option>
+                        <option value="boutille d'eau">boutille d'eau</option>
+                        <option value="Canne à pêche">Canne à pêche</option>
+                        <option value="coupeurs">coupeurs</option>
+                        <option value="croquettes">croquettes</option>
+                        <option value="Fertilisant">Fertilisant</option>
+                        <option value="Foret de perceuses">Foret de perceuses</option>
+                        <option value="Grosse perceuses">Grosse perceuses</option>
+                        <option value="Huile">Huile</option>
+                        <option value="Huile de shell">Huile de shell</option>
+                        <option value="Huile noir">Huile noir</option>
+                        <option value="Lumière violette">Lumière violette</option>
+                        <option value="Outil">Outil</option>
+                        <option value="Perceuse">Perceuse</option>
+                        <option value="Pile Verte">Pile verte</option>
+                        <option value="Pince pour plaque">Pince pour plaque</option>
+                        <option value="Porte document">Porte document</option>
+                        <option value="Porte feuilles">Porte feuilles</option>
+                        <option value="Pot de fleur">Pot de fleur</option>
+                        <option value="Skateboard">Skateboard</option>
+                        <option value="Spray pour tag">Spray pour tag</option>
+                        <option value="Table de travail">Table de travail</option>
+                        <option value="Ticket à grater">Ticket à grater</option>
+                        <option value="trousseau de clé">trousseau de clé</option>
+                        <option value="Ver de terre">Ver de terre</option>
+                        <option value="Ver de terre pour poisson">Ver de terre pour poisson</option>
+                    </select>
+                    <label for="quantite_${articleCount}">Quantité :</label>
+                    <input type="number" id="quantite_${articleCount}" name="quantite[]" required min="1">
+                `;
+                articlesDiv.appendChild(newArticle);
+                articleCount++;
+            }
+    
+            document.getElementById('orderForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                // Collect form data
+                const formData = new FormData(this);
+                const data = {
+                    type_article: formData.getAll('type_article[]'),
+                    quantite: formData.getAll('quantite[]'),
+                    nom_entreprise: formData.get('nom_entreprise'),
+                    date_commande: formData.get('date_commande'),
+                    heure_commande: formData.get('heure_commande'),
+                    heure_commande1: formData.get('heure_commande1')
+                };
+
+                // Reformater la date en JJ/MM/AAAA
+                const dateLivraison = new Date(data.date_commande);
+                const formattedDate = `${String(dateLivraison.getDate()).padStart(2, '0')}/${String(dateLivraison.getMonth() + 1).padStart(2, '0')}/${dateLivraison.getFullYear()}`;
+    
+                // Generate message content for Discord
+                let messageContent = `**Nouvelle commande reçue**\nEntreprise : ${data.nom_entreprise}\nDate de livraison : ${formattedDate}\nHeure de livraison : ${data.heure_commande} - ${data.heure_commande1}\n**Articles commandés :**\n`;
+                data.type_article.forEach((article, i) => {
+                    messageContent += `- ${article} : ${data.quantite[i]}\n`;
+                });
+    
+                // Get the webhook URL for the selected entreprise
+                const webhookURL = webhooks[data.nom_entreprise];
+                
+                if (!webhookURL) {
+                    alert("Erreur : Webhook non trouvé pour cette entreprise.");
+                    return;
+                }
+    
+                // Send data to Discord webhook
+                fetch(webhookURL, {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content: messageContent })
+                }).then(response => {
+                    if (response.ok) {
+                        // Redirect to confirmation page if submission is successful
+                        window.location.href = 'confirmation.html';
+                    } else {
+                        console.error("Erreur lors de l'envoi du message à Discord : ", response);
+                    }
+                }).catch(error => {
+                    console.error("Erreur lors de l'envoi du message à Discord : ", error);
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
