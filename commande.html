@@ -166,7 +166,6 @@
         </form>
 
         <script>
-            // Webhook URLs par entreprise
             const webhooks = {
                 "Custom Motor": "https://discord.com/api/webhooks/1307457052389543986/hbPGt8dSms5HqIae_dT5lF9OwIS3MF14PkGX9fRXBuM-78kfi8V99KLgOPu3yBwxn4Th",
                 "DockTease": "https://discord.com/api/webhooks/1307456891705753703/_7EUazLAa8AWGNEbNm3ZySPtHofl_3MWjBIJFM5plxF3ZN22q5uNjzt25y7VXP3oTYVr",
@@ -183,16 +182,15 @@
                 "Tatoo Vinewood": "https://discord.com/api/webhooks/1308139150372765747/T7_WS5qCZMUyKFvz_JaYUBEnnBdz-285z9IQuCkA33MHwAJaCqTx9CZNKQHBkcuAUTJw",
                 "Hen House": "https://discord.com/api/webhooks/1308139268044230728/Nz5CSg1-34WNEoi540iFFqJfJOsvaXUqGCO2jhki7Cz3Jg_dmOdirBFM7mLUF1N8HKg4"
             };
-
-            // Récupérer l'entreprise depuis l'URL
+        
+            const generalWebhook = "https://discord.com/api/webhooks/1302691211517104239/tH8Ixb5QouiSOv0s0igkEIGgbnETvoUkeKTmjDX6v_8x0eeg0W9l6QMGmLIuiMR2C04p"; // Webhook général
+        
             const urlParams = new URLSearchParams(window.location.search);
             const entreprise = urlParams.get('entreprise');
-            // Vérifier que l'entreprise est bien récupérée
-            console.log("Entreprise récupérée :", entreprise);
             document.getElementById('nom_entreprise').value = entreprise;
-
+        
             let articleCount = 1;
-    
+        
             function addArticle() {
                 const articlesDiv = document.getElementById('articles');
                 const newArticle = document.createElement('div');
@@ -200,7 +198,7 @@
                 newArticle.innerHTML = `
                     <label for="type_article_${articleCount}">Type d'article :</label>
                     <select id="type_article_${articleCount}" name="type_article[]" required>
-                        <option value="">--Sélectionnez--</option>
+                         <option value="">--Sélectionnez--</option>
                         <option value="Bagel">Bagel</option>
                         <option value="Bar de chocolat">Bar de chocolat</option>
                         <option value="caramel">Caramel</option>
@@ -260,54 +258,62 @@
                 articlesDiv.appendChild(newArticle);
                 articleCount++;
             }
-    
+        
             document.getElementById('orderForm').addEventListener('submit', function(event) {
                 event.preventDefault();
-    
-                // Collect form data
+        
                 const formData = new FormData(this);
                 const data = {
                     type_article: formData.getAll('type_article[]'),
                     quantite: formData.getAll('quantite[]'),
                     nom_entreprise: formData.get('nom_entreprise'),
                     date_commande: formData.get('date_commande'),
-                    heure_commande: formData.get('heure_commande'),
-                    heure_commande1: formData.get('heure_commande1')
+                    heure_commande: formData.getAll('heure_commande[]'),
+                    heure_commande_fin: formData.getAll('heure_commande_fin[]')
                 };
-
-                // Reformater la date en JJ/MM/AAAA
+        
                 const dateLivraison = new Date(data.date_commande);
                 const formattedDate = `${String(dateLivraison.getDate()).padStart(2, '0')}/${String(dateLivraison.getMonth() + 1).padStart(2, '0')}/${dateLivraison.getFullYear()}`;
-    
-                // Generate message content for Discord
-                let messageContent = `**Nouvelle commande reçue**\nEntreprise : ${data.nom_entreprise}\nDate de livraison : ${formattedDate}\nHeure de livraison : ${data.heure_commande} - ${data.heure_commande1}\n**Articles commandés :**\n`;
+        
+                let messageContent = `**Nouvelle commande reçue**\nEntreprise : ${data.nom_entreprise}\nDate de livraison : ${formattedDate}\n**Plages horaires :**\n`;
+                data.heure_commande.forEach((start, i) => {
+                    const end = data.heure_commande_fin[i];
+                    messageContent += `- De ${start} à ${end}\n`;
+                });
+                messageContent += `**Articles commandés :**\n`;
                 data.type_article.forEach((article, i) => {
                     messageContent += `- ${article} : ${data.quantite[i]}\n`;
                 });
-    
-                // Get the webhook URL for the selected entreprise
-                const webhookURL = webhooks[data.nom_entreprise];
-                
-                if (!webhookURL) {
+        
+                const specificWebhookURL = webhooks[data.nom_entreprise];
+        
+                if (!specificWebhookURL) {
                     alert("Erreur : Webhook non trouvé pour cette entreprise.");
                     return;
                 }
-    
-                // Send data to Discord webhook
-                fetch(webhookURL, {
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ content: messageContent })
-                }).then(response => {
-                    if (response.ok) {
-                        // Redirect to confirmation page if submission is successful
-                        window.location.href = 'confirmation.html';
-                    } else {
-                        console.error("Erreur lors de l'envoi du message à Discord : ", response);
-                    }
-                }).catch(error => {
-                    console.error("Erreur lors de l'envoi du message à Discord : ", error);
-                });
+        
+                // Fonction pour envoyer le message à un webhook
+                function sendToWebhook(url, content) {
+                    return fetch(url, {
+                        method: "POST",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ content: content })
+                    });
+                }
+        
+                // Envoyer au webhook spécifique de l'entreprise
+                sendToWebhook(specificWebhookURL, messageContent).catch(error => console.error("Erreur Webhook Entreprise :", error));
+        
+                // Envoyer au webhook général
+                sendToWebhook(generalWebhook, messageContent)
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = 'confirmation.html';
+                        } else {
+                            console.error("Erreur Webhook Général :", response);
+                        }
+                    })
+                    .catch(error => console.error("Erreur Webhook Général :", error));
             });
         </script>
     </div>
