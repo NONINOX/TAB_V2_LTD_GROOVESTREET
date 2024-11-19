@@ -160,8 +160,16 @@
             <input type="date" id="date_commande" name="date_commande" required>
 
             <label for="heure_commande">Heure de livraison :</label>
-            <input type="time" id="heure_commande" name="heure_commande" required>
-            <input type="time" id="heure_commande1" name="heure_commande1" required>
+            <input type="time" id="heure_commande[]" name="heure_commande[]" required>
+            <input type="time" id="heure_commande_fin[]" name="heure_commande_fin[]" required>
+            <label for="telephone">Numéro de téléphone :</label>
+            <input type="text" id="telephone" name="telephone" required maxlength="8" placeholder="123-4567" title="Format attendu : xxx-xxxx">
+            
+ 
+            <!-- Ajout de la zone de commentaire -->
+             <label for="commentaire">Commentaire :</label>
+             <textarea id="commentaire" name="commentaire" rows="4" placeholder="Entrez vos remarques ou instructions spécifiques ici..."></textarea>
+ 
             <input type="submit" value="Commander">
         </form>
 
@@ -258,6 +266,15 @@
                 articlesDiv.appendChild(newArticle);
                 articleCount++;
             }
+
+            document.getElementById('telephone').addEventListener('input', function(event) {
+                 let input = event.target.value.replace(/\D/g, ''); // Supprimer tous les caractères non numériques
+                    if (input.length > 3) {
+                input = input.slice(0, 3) + '-' + input.slice(3); // Ajouter le tiret après les 3 premiers chiffres
+    }
+                event.target.value = input.slice(0, 8); // Limiter à 8 caractères (xxx-xxxx)
+                });
+
         
             document.getElementById('orderForm').addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -269,13 +286,16 @@
                     nom_entreprise: formData.get('nom_entreprise'),
                     date_commande: formData.get('date_commande'),
                     heure_commande: formData.getAll('heure_commande[]'),
-                    heure_commande_fin: formData.getAll('heure_commande_fin[]')
+                    heure_commande_fin: formData.getAll('heure_commande_fin[]'),
+                    telephone: formData.get('telephone'),
+                    commentaire: formData.get('commentaire') // Nouveau champ
+                    
                 };
         
                 const dateLivraison = new Date(data.date_commande);
                 const formattedDate = `${String(dateLivraison.getDate()).padStart(2, '0')}/${String(dateLivraison.getMonth() + 1).padStart(2, '0')}/${dateLivraison.getFullYear()}`;
         
-                let messageContent = `**Nouvelle commande reçue**\nEntreprise : ${data.nom_entreprise}\nDate de livraison : ${formattedDate}\n**Plages horaires :**\n`;
+                let messageContent = `**Nouvelle commande reçue**\nEntreprise : ${data.nom_entreprise}\nTéléphone : ${data.telephone}\nDate de livraison : ${formattedDate}\n**Plages horaires :**\n`;
                 data.heure_commande.forEach((start, i) => {
                     const end = data.heure_commande_fin[i];
                     messageContent += `- De ${start} à ${end}\n`;
@@ -284,6 +304,11 @@
                 data.type_article.forEach((article, i) => {
                     messageContent += `- ${article} : ${data.quantite[i]}\n`;
                 });
+
+                if (data.commentaire) {
+                    messageContent += `\n**Commentaire :**\n${data.commentaire}`;
+                }
+        
         
                 const specificWebhookURL = webhooks[data.nom_entreprise];
         
