@@ -7,14 +7,11 @@
     <style>
         body {
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
-            background-image: url(fond_ltd.png); /* Remplace par le chemin réel de ton image */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-color: #f4f4f9;
             font-family: Arial, sans-serif;
         }
 
@@ -22,7 +19,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #0000008a;
+            background-color: #fae7ce;
             border: 1px solid #000000;
             border-radius: 5px;
             padding: 20px;
@@ -47,7 +44,6 @@
         h1 {
             text-align: center;
             margin: 0;
-            color: white;
         }
 
         #orderForm {
@@ -57,7 +53,6 @@
         label {
             display: block;
             margin: 10px 0 5px;
-            color: white;
         }
 
         input[type="text"], input[type="number"], select, input[type="time"] {
@@ -83,30 +78,12 @@
         input[type="submit"]:hover, button:hover {
             background-color: #218838;
         }
-        input[type="date"] {
-            width: 100%;        /* La largeur de l'input sera la même que les autres champs */
-            padding: 8px;       /* Espacement intérieur pour plus de confort */
-            margin-bottom: 15px; /* Espacement en bas pour bien espacer les champs */
-            border: 1px solid #ccc; /* Bordure similaire à celle des autres champs */
-            border-radius: 4px; /* Coins arrondis comme les autres champs */
-            box-sizing: border-box; /* Permet de prendre en compte les bordures dans la largeur totale */
-            height: 36px;       /* Ajuste la hauteur du champ de date */
-        }
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            height: 100px; /* Ajuster la hauteur selon tes besoins */
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="logo_ltd_grv.png" alt="Logo LTD Grove Street">
+            <img src="ltdgrv.png" alt="Logo LTD Grove Street">
             <h1>LTD GROVE STREET | COMMANDE</h1>
         </div>
         <form id="orderForm">
@@ -117,10 +94,10 @@
                 <div class="article">
                     <label for="type_article_0">Article :</label>
                     <select id="type_article_0" name="type_article[]" required>
-                        <option value="">Sélectionnez</option>
+                        <option value="">--Sélectionnez--</option>
                         <option value="Bagel">Bagel</option>
                         <option value="Bar de chocolat">Bar de chocolat</option>
-                        <option value="Caramel">Caramel</option>
+                        <option value="caramel">Caramel</option>
                         <option value="Colle">Colle</option>
                         <option value="Coquille à tacos">Coquille à tacos</option>
                         <option value="Crème fraîche">Crème fraîche</option>
@@ -145,10 +122,10 @@
                         <option value="Batterie">Batterie</option>
                         <option value="Batterie de Voiture">Batterie de Voiture</option>
                         <option value="Bobine de cuivre">Bobine de cuivre</option>
-                        <option value="Bouteille d'eau">Bouteille d'eau</option>
+                        <option value="boutille d'eau">boutille d'eau</option>
                         <option value="Canne à pêche">Canne à pêche</option>
-                        <option value="Coupeurs">Coupeurs</option>
-                        <option value="Croquettes">Croquettes</option>
+                        <option value="coupeurs">coupeurs</option>
+                        <option value="croquettes">croquettes</option>
                         <option value="Fertilisant">Fertilisant</option>
                         <option value="Foret de perceuses">Foret de perceuses</option>
                         <option value="Grosse perceuses">Grosse perceuses</option>
@@ -167,7 +144,7 @@
                         <option value="Spray pour tag">Spray pour tag</option>
                         <option value="Table de travail">Table de travail</option>
                         <option value="Ticket à grater">Ticket à grater</option>
-                        <option value="Trousseau de clé">Trousseau de clé</option>
+                        <option value="trousseau de clé">trousseau de clé</option>
                         <option value="Ver de terre">Ver de terre</option>
                         <option value="Ver de terre pour poisson">Ver de terre pour poisson</option>
                     </select>
@@ -211,9 +188,8 @@
                 "UwU Café": "https://discord.com/api/webhooks/1308146972854845460/P12iDAU3eVsO7yIJK4YBE_4RQXUHJoEJIM0dP6UH2Taj7Tfiv04uYIih6Z2Fqz7AP1jy",
                 "LD Organics": "https://discord.com/api/webhooks/1308147110662901809/qoRCrezPFtwsQtUKMHO6xqeUUxHj2skx9a0jI_XixBadOpB-E-ba7zWX81m42OYLGBzb",
                 "Tatoo Vinewood": "https://discord.com/api/webhooks/1308139150372765747/T7_WS5qCZMUyKFvz_JaYUBEnnBdz-285z9IQuCkA33MHwAJaCqTx9CZNKQHBkcuAUTJw",
-                "Hen House": "https://discord.com/api/webhooks/1308139268044230728/Nz5CSg1-34WNEoi540iFFqJfJOsvaXUqGCO2jhki7Cz3Jg_dmOdirBFM7mLUF1N8HKg4",
-                "Life": "https://discordapp.com/api/webhooks/1309646542595948615/Ej7oMDi9qeyxPZfmR8DgMCSOVHcTLxQtvP8HOt7mSUQxFDv8SAOJEDKszI9LoI-RIzE7",
-                "Bayview Lodge": "https://discordapp.com/api/webhooks/1315827526211338250/jsCYXO-4i3vloVxgimADqxOxhqYUPPLrB6kWFvWJRhMuku_8VeG40t5OvpKZ9tM4x8fG"
+                "Biogood": "https://discord.com/api/webhooks/1323064208753164350/FNcDh4f0SlFeq7TLUC6LKbqbS6SGvIWcqmCQJf9izW_ctya1DknEObnEAF68he8KCrND",
+                "Hen House": "https://discord.com/api/webhooks/1308139268044230728/Nz5CSg1-34WNEoi540iFFqJfJOsvaXUqGCO2jhki7Cz3Jg_dmOdirBFM7mLUF1N8HKg4"
             };
         
             const generalWebhook = "https://discord.com/api/webhooks/1302691211517104239/tH8Ixb5QouiSOv0s0igkEIGgbnETvoUkeKTmjDX6v_8x0eeg0W9l6QMGmLIuiMR2C04p"; // Webhook général
@@ -231,10 +207,10 @@
                 newArticle.innerHTML = `
                     <label for="type_article_${articleCount}">Type d'article :</label>
                     <select id="type_article_${articleCount}" name="type_article[]" required>
-                         <option value="">Sélectionnez</option>
+                         <option value="">--Sélectionnez--</option>
                         <option value="Bagel">Bagel</option>
                         <option value="Bar de chocolat">Bar de chocolat</option>
-                        <option value="Caramel">Caramel</option>
+                        <option value="caramel">Caramel</option>
                         <option value="Colle">Colle</option>
                         <option value="Coquille à tacos">Coquille à tacos</option>
                         <option value="Crème fraîche">Crème fraîche</option>
@@ -259,10 +235,10 @@
                         <option value="Batterie">Batterie</option>
                         <option value="Batterie de Voiture">Batterie de Voiture</option>
                         <option value="Bobine de cuivre">Bobine de cuivre</option>
-                        <option value="Bouteille d'eau">Bouteille d'eau</option>
+                        <option value="boutille d'eau">boutille d'eau</option>
                         <option value="Canne à pêche">Canne à pêche</option>
-                        <option value="Coupeurs">Coupeurs</option>
-                        <option value="Croquettes">Croquettes</option>
+                        <option value="coupeurs">coupeurs</option>
+                        <option value="croquettes">croquettes</option>
                         <option value="Fertilisant">Fertilisant</option>
                         <option value="Foret de perceuses">Foret de perceuses</option>
                         <option value="Grosse perceuses">Grosse perceuses</option>
@@ -281,7 +257,7 @@
                         <option value="Spray pour tag">Spray pour tag</option>
                         <option value="Table de travail">Table de travail</option>
                         <option value="Ticket à grater">Ticket à grater</option>
-                        <option value="Trousseau de clé">Trousseau de clé</option>
+                        <option value="trousseau de clé">trousseau de clé</option>
                         <option value="Ver de terre">Ver de terre</option>
                         <option value="Ver de terre pour poisson">Ver de terre pour poisson</option>
                     </select>
