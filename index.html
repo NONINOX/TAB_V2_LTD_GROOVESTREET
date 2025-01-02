@@ -11,12 +11,15 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f4f9;
+            background-image: url(fond_ltd.png); /* Remplace par le chemin réel de ton image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             font-family: Arial, sans-serif;
         }
 
         .container {
-            background-color: #fae7ce;
+            background-color: #0000008a;  /*#fae7ce*/
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -26,11 +29,13 @@
 
         h1 {
             margin-bottom: 20px;
+            color: white;
         }
 
         label {
             display: block;
             margin: 10px 0 5px;
+            color: white;
         }
 
         input[type="text"], input[type="password"] {
@@ -95,8 +100,10 @@
                 "UwU Café": "437999",
                 "LD Organics": "455495",
                 "Tatoo Vinewood": "359864",
+                "Hen House": "823222",
+                "Life": "233879",
                 "Biogood": "445685",
-                "Hen House": "823222"
+                "Bayview Lodge":"677545"
             };
 
             if (entreprises[entrepriseId] === password) {
